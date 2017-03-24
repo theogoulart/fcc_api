@@ -15,10 +15,13 @@ app.get('/:str', function (req, res) {
   
   var result = {}
   
-  var strDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear()
-  
-  result.unix = date.getTime()
-  result.natural = strDate
+  if(months[date.getMonth()]!==undefined){
+    result.unix = date.getTime()
+    result.natural = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear()
+  } else {
+      result.unix = null
+      result.natural = null
+  }
   
   res.send(JSON.stringify(result))
   
