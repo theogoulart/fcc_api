@@ -5,7 +5,14 @@ var months = ['January','February','March','April','May','June','July','August',
 
 app.get('/:str', function (req, res) {
   
-  var date = new Date(req.params.str)
+  var param = req.params.str
+  
+  if(isNaN(param)){
+    var date = new Date(param)
+  } else {
+    var date = new Date(parseInt(param)*1000)  
+  }
+  
   var result = {}
   
   var strDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear()
